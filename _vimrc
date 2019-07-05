@@ -1,5 +1,7 @@
 call plug#begin('~/.vim/plugged')
-Plug 'tomasr/molokai'
+	Plug 'tomasr/molokai'
+	Plug 'tpope/vim-endwise'
+	Plug 'scrooloose/nerdtree'
 call plug#end()
 
 "===表示設定==="
@@ -15,6 +17,8 @@ set pumheight=10	"補完メニュー"
 set display=lastline	"１行が長くても表示"
 set lines=50	"window縦"
 set columns=150	"window横"
+set wildmenu	"コマンド補完"
+set noswapfile
 
 "===カラー設定==="
 colorscheme molokai
