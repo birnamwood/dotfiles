@@ -13,6 +13,12 @@ set laststatus=2	"ステータス表示"
 set ruler		"カーソル位置"
 set pumheight=10	"補完メニュー"
 set display=lastline	"１行が長くても表示"
+set lines=50	"window縦"
+set columns=150	"window横"
+
+"===カラー設定==="
+colorscheme molokai
+set background=dark
 
 "===文字==="
 set fenc=utf-8	"文字コード指定"
