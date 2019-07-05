@@ -1,0 +1,8 @@
+"表示設定"
+set lines=50
+set columns=150
+
+"カラー設定"
+colorscheme molokai
+set background=dark
+
