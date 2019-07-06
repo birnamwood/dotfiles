@@ -15,8 +15,8 @@ set laststatus=2	"ステータス表示"
 set ruler		"カーソル位置"
 set pumheight=10	"補完メニュー"
 set display=lastline	"１行が長くても表示"
-set lines=50	"window縦"
-set columns=150	"window横"
+set lines=65	"window縦"
+set columns=160	"window横"
 set wildmenu	"コマンド補完"
 set noswapfile
 
@@ -56,5 +56,13 @@ inoremap <silent> っj <ESC>
 "履歴を10000件保存
 set history=10000
 
+"===Terminal===
+autocmd vimenter * terminal
+set splitbelow
+set termwinsize=7x0
+
+"===NERDTree==="
+autocmd vimenter * NERDTree
+map <C-t> :NERDTreeToggle<CR>
 
 
