@@ -1,52 +1,20 @@
-""dein Scripts-----------------------------
-if &compatible
-  set nocompatible               " Be iMproved
-endif
-
-" Required:
-set runtimepath+=$HOME/.cache/dein/repos/github.com/Shougo/dein.vim
-
-" Required:
-if dein#load_state('$HOME/.cache/dein')
-  call dein#begin('$HOME/.cache/dein')
-
-  " Let dein manage dein
-  " Required:
-  call dein#add('$HOME/.cache/dein/repos/github.com/Shougo/dein.vim')
-
-  " Add or remove your plugins here:
-  call dein#add('tomasr/molokai')
-  call dein#add('tpope/vim-endwise')
-  call dein#add('scrooloose/nerdtree')
-  call dein#add('alvan/vim-closetag')
-  call dein#add('mattn/emmet-vim')
-  call dein#add('Shougo/unite.vim')
-  call dein#add('Shougo/neocomplete.vim')
-  call dein#add('Shougo/neosnippet')
-  call dein#add('Shougo/neosnippet-snippets')
-  "call dein#add('')
-  "call dein#add('')
- 
-
-  " You can specify revision/branch/tag.
-  call dein#add('Shougo/deol.nvim', { 'rev': '01203d4c9' })
-
-  " Required:
-  call dein#end()
-  call dein#save_state()
-endif
-
-" Required:
-filetype plugin indent on
-syntax enable
-
-" If you want to install not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
-endif
-
-"End dein Scripts-------------------------
-
+"==========================================
+"  プラグイン
+"==========================================
+call plug#begin('~/.vim/plugged')
+  Plug ('tomasr/molokai')
+  Plug ('tpope/vim-endwise')
+  Plug ('scrooloose/nerdtree')
+  Plug ('alvan/vim-closetag')
+  Plug ('mattn/emmet-vim')
+  Plug ('Shougo/unite.vim')
+  Plug ('Shougo/neocomplete.vim')
+  Plug ('Shougo/neosnippet')
+  Plug ('Shougo/neosnippet-snippets')
+  "Plug ('')
+  "Plug ('')
+call plug#end()
+"=========================================
 "===表示設定==="
 syntax on		"コードに色を付ける"
 set nu			"行番号表示"
@@ -111,22 +79,28 @@ map <C-t> :NERDTreeToggle<CR>
 "----------------------------------------------------------
 " neocomplete・neosnippetの設定
 "----------------------------------------------------------
-    " Vim起動時にneocompleteを有効にする
-    let g:neocomplete#enable_at_startup = 1
-    " smartcase有効化. 大文字が入力されるまで大文字小文字の区別を無視する
-    let g:neocomplete#enable_smart_case = 1
-    " 3文字以上の単語に対して補完を有効にする
-    let g:neocomplete#min_keyword_length = 3
-    " 区切り文字まで補完する
-    let g:neocomplete#enable_auto_delimiter = 1
-    " 1文字目の入力から補完のポップアップを表示
-    let g:neocomplete#auto_completion_start_length = 1
-    " バックスペースで補完のポップアップを閉じる
-    inoremap <expr><BS> neocomplete#smart_close_popup()."<C-h>"
+" Vim起動時にneocompleteを有効にする
+let g:neocomplete#enable_at_startup = 1
+" smartcase有効化. 大文字が入力されるまで大文字小文字の区別を無視する
+let g:neocomplete#enable_smart_case = 1
+" 3文字以上の単語に対して補完を有効にする
+let g:neocomplete#min_keyword_length = 3
+" 区切り文字まで補完する
+let g:neocomplete#enable_auto_delimiter = 1
+" 1文字目の入力から補完のポップアップを表示
+let g:neocomplete#auto_completion_start_length = 1
+"menu表示数
+let g:neocomplete#max_list = 50
+" バックスペースで補完のポップアップを閉じる
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" タブキーで補完候補の選択. スニペット内のジャンプもタブキーでジャンプ・・・・・・③
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-    " エンターキーで補完候補の確定. スニペットの展開もエンターキーで確定・・・・・・②
-    "imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
-    " タブキーで補完候補の選択. スニペット内のジャンプもタブキーでジャンプ・・・・・・③
-    imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
+"Enterキーで選択する <CR>: close popup and save indent.
+function! s:my_cr_function()
+  return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
+inoremap <silent> <CR> <C-R>=<SID>my_cr_function()<CR>
+
 
 
