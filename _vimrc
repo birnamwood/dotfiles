@@ -61,7 +61,7 @@ set display=lastline	"１行が長くても表示"
 set lines=65	"window縦"
 set columns=160	"window横"
 set wildmenu	"コマンド補完"
-set noswapfile
+set cursorline "カーソル行ハイライト
 
 "===カラー設定==="
 colorscheme molokai
@@ -79,6 +79,7 @@ set whichwrap=b,s,h,l,<,>,[,],~ "行頭、行末で行のカーソル移動を�
 set backspace=indent,eol,start "バックスペースでの行移動を可能にする
 let &t_ti.="\e[5 q" "カーソルの形状を変更
 let &t_SI.="\e[5 q"
+set clipboard+=unnamed "レジスタのデータをクリップボードに
 
 "===== 検索設定 =====
 set ignorecase "大文字、小文字の区別をしない
