@@ -25,6 +25,7 @@ call plug#end()
 "=========================================
 "===表示設定==="
 syntax on		"コードに色を付ける"
+set noswapfile  "スワップファイルを作成しない
 set nu			"行番号表示"
 set title		"タイトル表示"
 set showmatch		"括弧のペア表示"
