@@ -13,7 +13,13 @@ call plug#begin('~/.vim/plugged')
   Plug ('Shougo/neosnippet-snippets')
   Plug ('basyura/unite-rails')
   Plug ('tpope/vim-rails')
-  "Plug ('')
+  Plug ('Yggdroot/indentLine')
+  Plug ('osyo-manga/vim-monster')
+  Plug ('tpope/vim-commentary')
+  "Plug ('Shougo/deoplete.nvim')
+  "Plug ('Shougo/deoplete-rct')
+  "Plug ('roxma/vim-hug-neovim-rpc')
+  "Plug ('roxma/nvim-yarp')
   "Plug ('')
 call plug#end()
 "=========================================
@@ -29,7 +35,7 @@ set ruler		"カーソル位置"
 set pumheight=10	"補完メニュー"
 set display=lastline	"１行が長くても表示"
 set lines=65	"window縦"
-set columns=160	"window横"
+set columns=120	"window横"
 set wildmenu	"コマンド補完"
 set cursorline "カーソル行ハイライト
 
@@ -44,6 +50,7 @@ set autoindent	"自動インデント"
 set smartindent	"オートインデント"
 set tabstop=2	"tabを空白２つに"
 set shiftwidth=2	"自動インデント時空白２つ"
+set expandtab
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%	"不可視文字表示"
 set whichwrap=b,s,h,l,<,>,[,],~ "行頭、行末で行のカーソル移動を可能にする
 set backspace=indent,eol,start "バックスペースでの行移動を可能にする
@@ -66,6 +73,10 @@ set ttymouse=xterm2
 inoremap <silent> jj <Esc>
 inoremap <silent> っj <ESC>
 
+""inoremap { {}<LEFT>
+""inoremap " ""<LEFT>
+""inoremap ' ''<LEFT>
+""inoremap [ []<LEFT>
 
 "===== その他 =====
 "履歴を10000件保存
@@ -73,7 +84,7 @@ set history=10000
 
 "===Terminal===
 set splitbelow
-set termwinsize=10x0
+set termwinsize=20x0
 
 "===NERDTree==="
 map <C-t> :NERDTreeToggle<CR>
@@ -93,6 +104,23 @@ let g:neocomplete#enable_auto_delimiter = 1
 let g:neocomplete#auto_completion_start_length = 1
 "menu表示数
 let g:neocomplete#max_list = 50
+
+"===vim-monster設定
+" Set async completion.
+let g:monster#completion#rcodetools#backend = "async_rct_complete"
+" Or let g:monster#completion#solargraph#backend = "async_solargraph_suggest"
+" With neocomplete.vim
+let g:neocomplete#sources#omni#input_patterns = {
+\   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
+\}
+" With deoplete.nvim
+let g:monster#completion#rcodetools#backend = "async_rct_complete"
+" Or let g:monster#completion#solargraph#backend = "async_solargraph_suggest"
+let g:deoplete#sources#omni#input_patterns = {
+\   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
+\}
+
+
 " バックスペースで補完のポップアップを閉じる
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 " タブキーで補完候補の選択. スニペット内のジャンプもタブキーでジャンプ・・・・・・③
@@ -214,3 +242,4 @@ map <silent> [Tag]n :tabnext<CR>
 " tn 次のタブ
 map <silent> [Tag]p :tabprevious<CR>
 " tp 前のタブ
+
