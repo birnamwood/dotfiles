@@ -35,8 +35,8 @@ set laststatus=2	"ステータス表示"
 set ruler		"カーソル位置"
 set pumheight=10	"補完メニュー"
 set display=lastline	"１行が長くても表示"
-set lines=65	"window縦"
-set columns=120	"window横"
+set lines=60  "window縦"
+set columns=115	"window横"
 set wildmenu	"コマンド補完"
 set cursorline "カーソル行ハイライト
 
